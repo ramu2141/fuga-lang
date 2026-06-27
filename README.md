@@ -79,5 +79,6 @@ cargo test --test integration_test
 ## 参考文献
 
 *   [fuga-spec.md](fuga-spec.md) - 言語仕様書
-*   [fuga-reference.md](fuga-reference.md) - ユーザーリファレンス
+*   [fuga-reference.md](fuga-reference.md) - ユーザーリファレンス (Japanese)
+*   [fuga-reference-en.md](fuga-reference-en.md) - User Reference (English)
 *   [GEMINI.md](GEMINI.md) - プロジェクト開発ガイドライン
