@@ -1,0 +1,26 @@
+func i32 #main = {
+    array i32*3 $arr = {10, 20, 30}.
+    var i32 $idx = 1.
+    var i32 $val = $arr[$idx].
+    var i32 $ret = 1.
+    
+    try {
+        throw 1 @ $val = 20.
+    } catch 1 {
+        $ret = 0.
+    }.
+    
+    (Assignment to array element)
+    var i32 $idx_write = 2.
+    $arr[$idx_write] = 40.
+    
+    var i32 $idx_read = 2.
+    var i32 $val2 = $arr[$idx_read].
+    try {
+        throw 2 @ $val2 = 28. (40 in hex is 28)
+    } catch 2 {
+        (OK)
+    }.
+    
+    $main = $ret.
+}.

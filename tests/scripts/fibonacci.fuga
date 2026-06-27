@@ -1,0 +1,29 @@
+(Calculates the Fibonacci sequence and exits when the value exceeds 200)
+
+(Helper functions for variable copying)
+func i32 #copy_a = { $copy_a = $a. }.
+func i32 #copy_b = { $copy_b = $b. }.
+
+func i32 #main = {
+    var i32 $a = 0.
+    var i32 $b = 1.
+
+    try {
+        loop {
+            (Copy a for termination check)
+            var i32 $a_check = #copy_a.
+            throw 1 @ $a_check > C8. (Exit if it exceeds 200)
+
+            (Calculate the next Fibonacci number)
+            var i32 $a_calc = #copy_a.
+            var i32 $b_calc = #copy_b.
+            var i32 $next = $a_calc + $b_calc.
+
+            (Update a and b. Original $a and $b are consumed here)
+            $a = $b.
+            $b = $next.
+        }.
+    } catch 1 {
+        (Normal exit)
+    }.
+}.

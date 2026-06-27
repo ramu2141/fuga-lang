@@ -1,0 +1,7 @@
+(Test for consumption error. Should exit abnormally with an error)
+func i32 #main = {
+    var i32 $a = 1.
+    var i32 $b = $a. (a is consumed here)
+    var i32 $c = $a. (Should abort with undefined reference error)
+    $main = 0.
+}.

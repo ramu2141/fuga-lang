@@ -1,0 +1,23 @@
+(Test for dynamic scope)
+func i32 #get_outer = {
+    $get_outer = $outer_val. (Reference the caller's variable)
+}.
+
+func i32 #main = {
+    var i32 $outer_val = 2A.
+    var i32 $res = #get_outer.
+    
+    var i32 $outer_alive = $outer_val. (External variable is not consumed, so it can be accessed again)
+
+    var i32 $ret = 1.
+    try {
+        throw 1 @ $res = 2A. (42 in hex is 2A)
+    } catch 1 {
+        try {
+            throw 2 @ $outer_alive = 2A.
+        } catch 2 {
+            $ret = 0.
+        }.
+    }.
+    $main = $ret.
+}.

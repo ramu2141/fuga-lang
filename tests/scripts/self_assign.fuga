@@ -1,0 +1,16 @@
+(Test for self-assignment)
+func i32 #main = {
+    var i32 $a = 5.
+    $a = $a + 1. ($a is revived by self-assignment)
+    
+    var i32 $res = $a. (result is 6)
+    
+    var i32 $is_6 = $res = 6.
+    var i32 $ret = 1.
+    try {
+        throw 1 @ $is_6 = 1.
+    } catch 1 {
+        $ret = 0.
+    }.
+    $main = $ret.
+}.

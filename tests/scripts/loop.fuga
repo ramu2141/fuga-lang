@@ -1,0 +1,20 @@
+(Test for loop processing)
+
+func i32 #copy_i = {
+    $copy_i = $i.
+}.
+
+func i32 #main = {
+    var i32 $i = 0.
+    
+    try {
+        loop {
+            var i32 $i_check = #copy_i.
+            throw 1 @ $i_check = 5.
+            
+            var i32 $next = $i + 1.
+            $i = $next.
+        }.
+    } catch 1 {
+    }.
+}.

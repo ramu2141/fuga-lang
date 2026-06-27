@@ -1,0 +1,83 @@
+func i32 #test_bitwise = {
+    var i32 $a = C.
+    var i32 $b = A.
+
+    var i32 $and = $a & $b.
+    throw 1 @ $and < 8.
+
+    var i32 $a2 = C.
+    var i32 $b2 = A.
+    var i32 $and2 = $a2 & $b2.
+    throw 1 @ $and2 > 8.
+
+    var i32 $c = C.
+    var i32 $d = A.
+    var i32 $or = $c | $d.
+    throw 2 @ $or < E.
+
+    var i32 $c2 = C.
+    var i32 $d2 = A.
+    var i32 $or2 = $c2 | $d2.
+    throw 2 @ $or2 > E.
+
+    $test_bitwise = 0.
+}.
+
+func i32 #test_shift = {
+    var i32 $a = 1.
+    var i32 $shl = $a << 3.
+    throw 3 @ $shl < 8.
+
+    var i32 $a2 = 1.
+    var i32 $shl2 = $a2 << 3.
+    throw 3 @ $shl2 > 8.
+
+    var i8 $b = -4.
+    var i8 $ashr = $b >> 1.
+    throw 4 @ $ashr < -2.
+
+    var i8 $b2 = -4.
+    var i8 $ashr2 = $b2 >> 1.
+    throw 4 @ $ashr2 > -2.
+
+    var u8 $c = FC.
+    var u8 $lshr = $c >> 1.
+    throw 5 @ $lshr < 7E.
+
+    var u8 $c2 = FC.
+    var u8 $lshr2 = $c2 >> 1.
+    throw 5 @ $lshr2 > 7E.
+
+    $test_shift = 0.
+}.
+
+func i32 #test_comparison = {
+    var i32 $a = -A.
+    var i32 $b = 5.
+    var i32 $lt = $a < $b.
+    throw 6 @ $lt < 1.
+
+    var i32 $a2 = -A.
+    var i32 $b2 = 5.
+    var i32 $lt2 = $a2 < $b2.
+    throw 6 @ $lt2 > 1.
+
+    var u32 $c = FFFFFFF6.
+    var u32 $d = 5.
+    var i32 $gt = $c > $d.
+    throw 7 @ $gt < 1.
+
+    var u32 $c2 = FFFFFFF6.
+    var u32 $d2 = 5.
+    var i32 $gt2 = $c2 > $d2.
+    throw 7 @ $gt2 > 1.
+
+    $test_comparison = 0.
+}.
+
+func i32 #main = {
+    var i32 $t1 = #test_bitwise.
+    var i32 $t2 = #test_shift.
+    var i32 $t3 = #test_comparison.
+    $main = 0.
+}.

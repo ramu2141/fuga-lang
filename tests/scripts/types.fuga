@@ -1,0 +1,21 @@
+func i32 #main = {
+    var i8 $i8_val = -80.
+    var u8 $u8_val = FF.
+
+    var i16 $i16_val = -8000.
+    var u16 $u16_val = FFFF.
+
+    var i32 $i32_val = -80000000.
+    var u32 $u32_val = FFFFFFFF.
+
+    var i64 $i64_val = -1.
+    var u64 $u64_val = FFFFFFFFFFFFFFFF.
+
+    var u64 $u64_copy = $u64_val.
+    throw 1 @ $u64_copy < FFFFFFFFFFFFFFFF.
+
+    var u64 $u64_copy2 = FFFFFFFFFFFFFFFF.
+    throw 1 @ $u64_copy2 > FFFFFFFFFFFFFFFF.
+
+    $main = 0.
+}.

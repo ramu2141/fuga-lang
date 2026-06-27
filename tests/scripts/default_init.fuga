@@ -1,0 +1,32 @@
+func i32 #test_var_init = {
+    var i32 $a.
+    throw 1 @ $a < 0.
+    
+    var i32 $a2.
+    throw 1 @ $a2 > 0.
+    
+    $test_var_init = 0.
+}.
+
+func i32 #test_array_init = {
+    var i32 $size = 3.
+    array i32*$size $arr.
+    
+    var i32 $idx = 1.
+    var i32 $val = $arr[$idx].
+    
+    throw 2 @ $val < 0.
+    
+    var i32 $idx2 = 2.
+    var i32 $val2 = $arr[$idx2].
+    
+    throw 2 @ $val2 > 0.
+    
+    $test_array_init = 0.
+}.
+
+func i32 #main = {
+    var i32 $t1 = #test_var_init.
+    var i32 $t2 = #test_array_init.
+    $main = 0.
+}.

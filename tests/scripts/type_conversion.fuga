@@ -1,0 +1,74 @@
+( 1. Safe widening: u8 -> u16 )
+func i32 #test_safe_widen = {
+    var u8 $u8_val1 = FF.
+    var u16 $u16_val1 = $u8_val1.
+    throw 1 @ $u16_val1 < FF.
+
+    var u8 $u8_val2 = FF.
+    var u16 $u16_val2 = $u8_val2.
+    throw 1 @ $u16_val2 > FF.
+    
+    $test_safe_widen = 0.
+}.
+
+( 2. Sign mismatch: i8 -> u8 )
+func i32 #test_sign_mismatch = {
+    var i8 $i8_val1 = -1.
+    var u8 $u8_val1 = $i8_val1.
+    throw 2 @ $u8_val1 < FF.
+
+    var i8 $i8_val2 = -1.
+    var u8 $u8_val2 = $i8_val2.
+    throw 2 @ $u8_val2 > FF.
+
+    $test_sign_mismatch = 0.
+}.
+
+( 3. Narrowing: u16 -> u8 )
+func i32 #test_narrowing = {
+    var u16 $u16_val1 = 101.
+    var u8 $u8_val1 = $u16_val1.
+    throw 3 @ $u8_val1 < 1.
+
+    var u16 $u16_val2 = 101.
+    var u8 $u8_val2 = $u16_val2.
+    throw 3 @ $u8_val2 > 1.
+
+    $test_narrowing = 0.
+}.
+
+( 4. Widening + Sign mismatch: i8 -> u16 )
+func i32 #test_widen_sign = {
+    var i8 $i8_val1 = -2.
+    var u16 $u16_val1 = $i8_val1.
+    throw 4 @ $u16_val1 < FFFE.
+
+    var i8 $i8_val2 = -2.
+    var u16 $u16_val2 = $i8_val2.
+    throw 4 @ $u16_val2 > FFFE.
+
+    $test_widen_sign = 0.
+}.
+
+( 5. Narrowing + Sign mismatch: u16 -> i8 )
+func i32 #test_narrow_sign = {
+    var u16 $u16_val1 = FFFF.
+    var i8 $i8_val1 = $u16_val1.
+    throw 5 @ $i8_val1 < -1.
+
+    var u16 $u16_val2 = FFFF.
+    var i8 $i8_val2 = $u16_val2.
+    throw 5 @ $i8_val2 > -1.
+
+    $test_narrow_sign = 0.
+}.
+
+func i32 #main = {
+    var i32 $t1 = #test_safe_widen.
+    var i32 $t2 = #test_sign_mismatch.
+    var i32 $t3 = #test_narrowing.
+    var i32 $t4 = #test_widen_sign.
+    var i32 $t5 = #test_narrow_sign.
+
+    $main = 0.
+}.

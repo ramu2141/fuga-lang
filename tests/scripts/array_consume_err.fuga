@@ -1,0 +1,14 @@
+func i32 #main = {
+    array i32*3 $arr = {10, 20, 30}.
+    
+    var i32 $idx0 = 0.
+    
+    (Access element 0. It should be consumed.)
+    var i32 $val0 = $arr[$idx0].
+    
+    (Access element 0 again. It should ABORT.)
+    var i32 $idx0_again = 0.
+    var i32 $val0_again = $arr[$idx0_again].
+    
+    $main = 0.
+}.

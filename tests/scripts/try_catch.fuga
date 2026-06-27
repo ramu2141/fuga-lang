@@ -1,0 +1,13 @@
+(Test for try-catch)
+
+func i32 #main = {
+    try {
+        var i32 $val = 1.
+        throw 2 @ $val = 1.
+        var i32 $unreached = 0.
+    } catch 1 {
+        (This path is not taken)
+    } catch 2 {
+        (Caught here)
+    }.
+}.

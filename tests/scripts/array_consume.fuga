@@ -1,0 +1,27 @@
+func i32 #main = {
+    array i32*3 $arr = {10, 20, 30}.
+    
+    var i32 $idx0 = 0.
+    var i32 $idx1 = 1.
+    
+    (Access element 0. It should be consumed.)
+    var i32 $val0 = $arr[$idx0].
+    
+    (Access element 1. It should NOT be consumed yet.)
+    var i32 $val1 = $arr[$idx1].
+    
+    (Check the values)
+    throw 1 @ $val0 < 10.
+    
+    var i32 $idx0_copy = 0.
+    var i32 $val0_copy = 10.
+    throw 1 @ $val0_copy > 10.
+    
+    throw 2 @ $val1 < 20.
+    
+    var i32 $idx1_copy = 1.
+    var i32 $val1_copy = 20.
+    throw 2 @ $val1_copy > 20.
+    
+    $main = 0.
+}.

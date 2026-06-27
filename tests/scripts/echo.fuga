@@ -1,0 +1,21 @@
+(Echo program that reads a character and outputs it. Exits on EOF(FF))
+
+(Helper function to copy variables)
+func u8 #copy_char = {
+    $copy_char = $char.
+}.
+
+func i32 #main = {
+    try {
+        loop {
+            var u8 $char = #_getc.
+            
+            var u8 $char_for_check = #copy_char.
+            throw 1 @ $char_for_check = FF.
+
+            var i32 $unused = #_putc($char).
+        }.
+    } catch 1 {
+        (Normal exit)
+    }.
+}.

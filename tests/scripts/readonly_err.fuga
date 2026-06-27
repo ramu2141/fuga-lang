@@ -1,0 +1,11 @@
+(Test modifying external variable. Should abort with an error)
+func i32 #modify_outer = {
+    $outer = 2. (Error because it is read-only)
+    $modify_outer = 0.
+}.
+
+func i32 #main = {
+    var i32 $outer = 1.
+    var i32 $res = #modify_outer.
+    $main = $res.
+}.

@@ -1,0 +1,16 @@
+(Test for logical comparison)
+func i32 #main = {
+    var i32 $a = 10.
+    var i32 $b = 20.
+    var i32 $ret = 1.
+    
+    (10 < 20 is 1)
+    var i32 $cmp1 = $a < $b.
+    try {
+        throw 1 @ $cmp1 = 1.
+    } catch 1 {
+        $ret = 0.
+    }.
+    
+    $main = $ret.
+}.

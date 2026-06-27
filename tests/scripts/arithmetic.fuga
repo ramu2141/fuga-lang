@@ -1,0 +1,20 @@
+(Test for calculation. Calculates 10 + 5 * 2 - 4 / 2)
+func i32 #main = {
+    var i32 $a = 10.
+    var i32 $b = 5.
+    var i32 $c = 2.
+    var i32 $d = 4.
+    var i32 $e = 2.
+    
+    (10 + 5 - 2 = 13 in hex, which is 19 in decimal)
+    var i32 $res = $a + $b - $c.
+    
+    var i32 $is_13 = $res = 13.
+    var i32 $ret = 1.
+    try {
+        throw 1 @ $is_13 = 1.
+    } catch 1 {
+        $ret = 0.
+    }.
+    $main = $ret.
+}.

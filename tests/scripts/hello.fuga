@@ -1,0 +1,37 @@
+(Store character codes in a global array)
+array u8*D $hello = {48, 65, 6C, 6C, 6F, 2C, 20, 57, 6F, 72, 6C, 64, A}.
+
+(Helper function to copy variables)
+func i32 #copy_i = {
+    $copy_i = $i. (Reference the caller's $i. External scope, so it is not consumed)
+}.
+
+(Main processing function)
+func i32 #main = {
+    var i32 $i = 0.
+
+    try {
+        loop {
+            (Copy counter $i twice without consuming it. Variables declared here will automatically vanish at the end of the loop)
+            var i32 $i_for_check = #copy_i.
+            var i32 $i_for_array = #copy_i.
+
+            (Exit the loop when the counter reaches array length D. $i_for_check is consumed here)
+            throw 1 @ $i_for_check = D.
+
+            (Calculate the next index. $i is consumed here)
+            var i32 $next_i = $i + 1.
+
+            (Read the array with the copied index. $i_for_array is consumed here)
+            var u8 $char = $hello[$i_for_array].
+
+            (Output a single character. $char is consumed here)
+            var i32 $unused = #_putc($char).
+
+            (Redefine $i for the next iteration. $next_i is consumed here)
+            $i = $next_i.
+        }.
+    } catch 1 {
+        (Normal exit)
+    }.
+}.
